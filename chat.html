@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salesforce MIAW Test Page</title>
+</head>
+<body>
+
+    <h1>Salesforce Messaging Test</h1>
+    <p>Open the browser console (F12) to view logs.</p>
+
+    <script type="text/javascript">
+
+        window.addEventListener("onEmbeddedMessagingReady", () => {
+            console.log("onEmbeddedMessagingReady fired");
+
+            embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
+                "LastName": "LastNameValue",
+                "BAC": "BacValue",
+                "CaseRecordType": "0126A000000kjYuQAI",
+                "Customer_Id": "TestCustomerId",
+                "ChatUsername": "UsernameValue",
+                "Dealer": "DealerValue",
+                "DealerId": "DealerIdValue",
+                "Email": "EmailValue",
+                "FirstName": "FirstNameValue",
+                "ParticipantId": "ParticipantIdValue",
+                "Phone": "1234567890",
+                "ProgramChatSkill": "ProgramChatSkillValue",
+                "ProgramId": "ProgramIdValue"
+            });
+
+            console.log("Hidden pre-chat fields set successfully");
+        });
+
+        function initEmbeddedMessaging() {
+            try {
+                console.log("Initializing Embedded Messaging...");
+
+                embeddedservice_bootstrap.settings.language = "en_US";
+
+                embeddedservice_bootstrap.init(
+                    "00DE100000L7kQE",
+                    "MIAW_24_7",
+                    "https://biw--uatfull.sandbox.my.site.com/ESWMIAW2471759176865631",
+                    {
+                        scrt2URL: "https://biw--uatfull.sandbox.my.salesforce-scrt.com"
+                    }
+                );
+
+                console.log("Embedded Messaging initialization requested");
+
+            } catch (err) {
+                console.error("Error loading Embedded Messaging:", err);
+            }
+        }
+
+    </script>
+
+    <script
+        type="text/javascript"
+        src="https://biw--uatfull.sandbox.my.site.com/ESWMIAW2471759176865631/assets/js/bootstrap.min.js"
+        onload="initEmbeddedMessaging()">
+    </script>
+
+</body>
+</html>
